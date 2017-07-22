@@ -2,7 +2,7 @@
 // governed by a BSD-2-Clause license that can be found in the LICENSE file.
 
 //go:generate go build go-norm-build/norm-build.go
-//go:generate norm-build
+//go:generate ./norm-build
 //go:generate rm norm-build
 
 package norm
