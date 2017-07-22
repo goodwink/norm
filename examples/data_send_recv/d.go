@@ -8,13 +8,14 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	"github.com/aletheia7/norm"
 	"log"
 	"os"
 	"os/signal"
 	"sync"
 	"syscall"
 	"time"
+
+	"github.com/goodwink/norm"
 )
 
 var (

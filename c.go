@@ -735,14 +735,16 @@ func (o *Instance) loop() {
 }
 
 func (o *Instance) do_event() error {
-	if !C.NormGetNextEvent(C.NormInstanceHandle(o.handle), &o.nevent, true) {
+	cevent := C.NormEvent(o.nevent)
+	if !C.NormGetNextEvent(C.NormInstanceHandle(o.handle), &cevent, true) {
 		return nil
 	}
 	ev := Event_type(1) << Event_type(o.nevent._type)
+	fmt.Println(o.nevent._type)
 	// Allow updated, completed or check subscribed Events
-	if ev&o.sess().events == 0 {
-		return nil
-	}
+	//if o.sess() == nil || ev&o.sess().events == 0 {
+	//	return nil
+	//}
 	switch ev {
 	case Event_type_tx_object_purged:
 		o.sess().c <- new_event(ev, o.obj())
